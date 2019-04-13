@@ -19,9 +19,5 @@ public class Main {
         System.out.println("-----------------------");
         hello.say("say");
 
-        /**
-         *
-         */
-//        DynamicProxyHandler proxyHandler = new DynamicProxyHandler(HelloImpl.class);
     }
 }
