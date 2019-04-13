@@ -43,7 +43,7 @@ public class DynamicProxyHandler implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        addClassToDisk(proxy.getClass().getName(), "F:/$Proxy0.class");
+//        addClassToDisk(proxy.getClass().getName(), "F:/$Proxy0.class");
         System.out.println("jdkproxy impl Interface:" + Arrays.toString(proxy.getClass().getInterfaces()));
         System.out.println("methodNem:" + method.getName());
         Class<?>[] classes = new Class<?>[args.length];
@@ -51,7 +51,10 @@ public class DynamicProxyHandler implements InvocationHandler {
             classes[i] = args[i].getClass();
         }
         System.out.println("argsClass:" + Arrays.toString(classes));
-        return method.invoke(proxyClass.newInstance(), args);
+        System.out.println("before");
+        method.invoke(proxyClass.newInstance(), args);
+        System.out.println("after");
+        return null;
     }
 
 }
