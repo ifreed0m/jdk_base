@@ -14,14 +14,14 @@ import java.util.Arrays;
  * @date 2019/4/13 15:49
  */
 public class DynamicProxyHandler implements InvocationHandler {
-    private Class<?> proxyClass;
+    private Class<?> proxyObjectType;
 
-    public DynamicProxyHandler(Class<?> proxyClass) {
-        this.proxyClass = proxyClass;
+    public DynamicProxyHandler(Class<?> proxyObjectType) {
+        this.proxyObjectType = proxyObjectType;
     }
 
     public Object getProxy() {
-        return Proxy.newProxyInstance(proxyClass.getClassLoader(), proxyClass.getInterfaces(), this);
+        return Proxy.newProxyInstance(proxyObjectType.getClassLoader(), proxyObjectType.getInterfaces(), this);
     }
 
     /**
@@ -32,7 +32,7 @@ public class DynamicProxyHandler implements InvocationHandler {
      */
     private void addClassToDisk(String className, String path) {
         // 用于生产代理对象的字节码
-        byte[] classFile = ProxyGenerator.generateProxyClass(className, proxyClass.getInterfaces());
+        byte[] classFile = ProxyGenerator.generateProxyClass(className, proxyObjectType.getInterfaces());
         try (FileOutputStream out = new FileOutputStream(path)) {
             // 将代理对象的class字节码写到硬盘上
             out.write(classFile);
@@ -52,7 +52,7 @@ public class DynamicProxyHandler implements InvocationHandler {
         }
         System.out.println("argsClass:" + Arrays.toString(classes));
         System.out.println("before");
-        method.invoke(proxyClass.newInstance(), args);
+        method.invoke(proxyObjectType.newInstance(), args);
         System.out.println("after");
         return null;
     }
