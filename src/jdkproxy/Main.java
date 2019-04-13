@@ -3,7 +3,7 @@ package jdkproxy;
 import java.util.Arrays;
 
 /**
- * @author 18070878
+ * @author ifreed0m
  * @version 1.0
  * @date 2019/4/13 16:33
  */
