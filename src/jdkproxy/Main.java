@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Main {
     public static void main(String[] args) {
-        DynamicProxyHandler dynamicProxyHandler = new DynamicProxyHandler(HelloImpl2.class);
+        DynamicProxyHandler dynamicProxyHandler = new DynamicProxyHandler(new HelloImpl2());
         HelloTwo helloTwo = (HelloTwo) dynamicProxyHandler.getProxy();
         Hello hello = (Hello) dynamicProxyHandler.getProxy();
         Object proxyObj = dynamicProxyHandler.getProxy();

@@ -14,14 +14,15 @@ import java.util.Arrays;
  * @date 2019/4/13 15:49
  */
 public class DynamicProxyHandler implements InvocationHandler {
-    private Class<?> proxyObjectType;
+    private Object proxyObj;
 
-    public DynamicProxyHandler(Class<?> proxyObjectType) {
-        this.proxyObjectType = proxyObjectType;
+    public DynamicProxyHandler(Object proxyObj) {
+        this.proxyObj = proxyObj;
     }
 
     public Object getProxy() {
-        return Proxy.newProxyInstance(proxyObjectType.getClassLoader(), proxyObjectType.getInterfaces(), this);
+        Class<?> proxyObjType = proxyObj.getClass();
+        return Proxy.newProxyInstance(proxyObjType.getClassLoader(), proxyObjType.getInterfaces(), this);
     }
 
     /**
@@ -32,7 +33,7 @@ public class DynamicProxyHandler implements InvocationHandler {
      */
     private void addClassToDisk(String className, String path) {
         // 用于生产代理对象的字节码
-        byte[] classFile = ProxyGenerator.generateProxyClass(className, proxyObjectType.getInterfaces());
+        byte[] classFile = ProxyGenerator.generateProxyClass(className, proxyObj.getClass().getInterfaces());
         try (FileOutputStream out = new FileOutputStream(path)) {
             // 将代理对象的class字节码写到硬盘上
             out.write(classFile);
@@ -52,7 +53,7 @@ public class DynamicProxyHandler implements InvocationHandler {
         }
         System.out.println("argsClass:" + Arrays.toString(classes));
         System.out.println("before");
-        method.invoke(proxyObjectType.newInstance(), args);
+        method.invoke(proxyObj, args);
         System.out.println("after");
         return null;
     }
