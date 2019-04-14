@@ -10,14 +10,14 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         DynamicProxyHandler dynamicProxyHandler = new DynamicProxyHandler(new HelloImpl2());
-        HelloTwo helloTwo = (HelloTwo) dynamicProxyHandler.getProxy();
-        Hello hello = (Hello) dynamicProxyHandler.getProxy();
         Object proxyObj = dynamicProxyHandler.getProxy();
+        HelloTwo proxyHelloTwo = (HelloTwo) proxyObj;
+        Hello proxyHello = (Hello) proxyObj;
         System.out.println("proxyObj 实现的接口:" + Arrays.toString(proxyObj.getClass().getInterfaces()));
         System.out.println("-----------------------");
-        helloTwo.sayTwo("sayTwo");
+        proxyHelloTwo.sayTwo("sayTwo");
         System.out.println("-----------------------");
-        hello.say("say");
+        proxyHello.say("say");
 
     }
 }
