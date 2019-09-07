@@ -1,4 +1,3 @@
-package jdkproxy;/*
 package jdkproxy;
 // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
 // Jad home page: http://www.kpdus.com/jad.html
@@ -11,10 +10,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.UndeclaredThrowableException;
 
-*/
+
 /**
  * jdk 动态代理生成的clss文件反编译生成的文件
- *//*
+ */
 
 public final class $Proxy0 extends Proxy implements Hello, HelloTwo {
 
@@ -89,4 +88,4 @@ public final class $Proxy0 extends Proxy implements Hello, HelloTwo {
         }
     }
 }
-*/
+

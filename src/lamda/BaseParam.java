@@ -9,6 +9,10 @@ public class BaseParam {
     private String searchValue;
     private Integer currentPage;
 
+    public BaseParam() {
+        System.out.println("super");
+    }
+
     public BaseParam(String searchValue, Integer currentPage) {
         this.searchValue = searchValue;
         this.currentPage = currentPage;

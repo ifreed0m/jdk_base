@@ -11,5 +11,8 @@ public class Main {
         BaseParam a = Page.getObject(BaseParam::new, "searchValue", 9);
         BaseParam params = param.getBaseParam("searchValue", 0);
         System.out.println(a);
+        new ExpandParam();
+        System.out.println(-1 << 31);
+        System.out.println((1 << 31) - 1);
     }
 }
